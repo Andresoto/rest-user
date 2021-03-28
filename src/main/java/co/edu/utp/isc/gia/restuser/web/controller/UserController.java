@@ -8,9 +8,11 @@ package co.edu.utp.isc.gia.restuser.web.controller;
 import co.edu.utp.isc.gia.restuser.service.UserService;
 import co.edu.utp.isc.gia.restuser.web.dto.UserDto;
 import java.util.List;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -30,17 +32,33 @@ public class UserController {
     }
 
     @PostMapping() // POST http://localhost:8080/user
-    public UserDto insetr(@RequestBody UserDto user) {
+    public UserDto insert(@RequestBody UserDto user) {
+        if (user == null) {
+            // TODO  devolver codigo 204 bad request con mensaje "Datos de usiario invalido"
+        }
         return userService.save(user);  
     }
     
     @GetMapping()
     public List<UserDto> getAll() {
-        return userService.listAll();
+        //TODO devolver no content cuando la lista este vacia
+        return userService.listAll(); //TODO devolver 200 OK
     }
     
     @GetMapping("/{id}") 
     public UserDto getOne (@PathVariable ("id") long id) {
         return userService.findOne(id);
+    }
+    
+    @PutMapping("/{id}") 
+    public UserDto updateOne (@PathVariable ("id") long id, @RequestBody UserDto user) {
+        //TODO
+        return userService.update(id, user);
+    }
+    
+    @DeleteMapping("/{id}") 
+    public UserDto removeOne (@PathVariable ("id") long id) {
+        //TODO
+        return userService.delete(id);
     }
 }
