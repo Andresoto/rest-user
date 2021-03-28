@@ -5,9 +5,11 @@
  */
 package co.edu.utp.isc.gia.restuser.web.controller;
 
+import co.edu.utp.isc.gia.restuser.exception.UserNotFoundException;
 import co.edu.utp.isc.gia.restuser.service.UserService;
 import co.edu.utp.isc.gia.restuser.web.dto.UserDto;
 import java.util.List;
+import java.util.NoSuchElementException;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -52,13 +54,11 @@ public class UserController {
     
     @PutMapping("/{id}") 
     public UserDto updateOne (@PathVariable ("id") long id, @RequestBody UserDto user) {
-        //TODO
         return userService.update(id, user);
     }
     
     @DeleteMapping("/{id}") 
     public UserDto removeOne (@PathVariable ("id") long id) {
-        //TODO
         return userService.delete(id);
     }
 }
