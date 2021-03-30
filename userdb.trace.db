@@ -1,0 +1,32 @@
+2021-03-30 11:32:31 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Tabla "USUARIO" no encontrada
+Table "USUARIO" not found; SQL statement:
+select user0_.id as id1_0_0_, user0_.email as email2_0_0_, user0_.name as name3_0_0_, user0_.password as password4_0_0_, user0_.username as username5_0_0_ from usuario user0_ where user0_.id=? [42102-200]
+2021-03-30 11:32:55 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Tabla "USUARIO" no encontrada
+Table "USUARIO" not found; SQL statement:
+select user0_.id as id1_0_0_, user0_.email as email2_0_0_, user0_.name as name3_0_0_, user0_.password as password4_0_0_, user0_.username as username5_0_0_ from usuario user0_ where user0_.id=? [42102-200]
+2021-03-30 11:33:17 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Tabla "USUARIO" no encontrada
+Table "USUARIO" not found; SQL statement:
+select user0_.id as id1_0_0_, user0_.email as email2_0_0_, user0_.name as name3_0_0_, user0_.password as password4_0_0_, user0_.username as username5_0_0_ from usuario user0_ where user0_.id=? [42102-200]
+2021-03-30 11:34:50 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Tabla "USUARIO" no encontrada
+Table "USUARIO" not found; SQL statement:
+select user0_.id as id1_0_0_, user0_.email as email2_0_0_, user0_.name as name3_0_0_, user0_.password as password4_0_0_, user0_.username as username5_0_0_ from usuario user0_ where user0_.id=? [42102-200]
+2021-03-30 11:40:59 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Tabla "USUARIO" no encontrada
+Table "USUARIO" not found; SQL statement:
+select user0_.id as id1_0_0_, user0_.email as email2_0_0_, user0_.name as name3_0_0_, user0_.password as password4_0_0_, user0_.username as username5_0_0_ from usuario user0_ where user0_.id=? [42102-200]
+2021-03-30 11:43:21 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Tabla "USUARIO" no encontrada
+Table "USUARIO" not found; SQL statement:
+select user0_.id as id1_0_0_, user0_.email as email2_0_0_, user0_.name as name3_0_0_, user0_.password as password4_0_0_, user0_.username as username5_0_0_ from usuario user0_ where user0_.id=? [42102-200]
+2021-03-30 11:44:32 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Tabla "USUARIO" no encontrada
+Table "USUARIO" not found; SQL statement:
+select user0_.id as id1_0_0_, user0_.email as email2_0_0_, user0_.name as name3_0_0_, user0_.password as password4_0_0_, user0_.username as username5_0_0_ from usuario user0_ where user0_.id=? [42102-200]
+2021-03-30 11:47:56 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Tabla "USUARIO" no encontrada
+Table "USUARIO" not found; SQL statement:
+select user0_.id as id1_0_0_, user0_.email as email2_0_0_, user0_.name as name3_0_0_, user0_.password as password4_0_0_, user0_.username as username5_0_0_ from usuario user0_ where user0_.id=? [42102-200]
