@@ -5,14 +5,10 @@
  */
 package co.edu.utp.isc.gia.restuser.service;
 
-import co.edu.utp.isc.gia.restuser.data.entity.User;
-import co.edu.utp.isc.gia.restuser.data.repository.UserRepository;
 import co.edu.utp.isc.gia.restuser.web.dto.UserDto;
+import java.util.List;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
-import org.mockito.Mock;
-import static org.mockito.Mockito.when;
-import org.modelmapper.ModelMapper;
 
 /**
  *
@@ -23,29 +19,59 @@ public class UserServiceTest {
     public UserServiceTest() {
     }
 
-    /**
-     * Test of save method, of class UserService.
-     */
-    @Mock
-    private UserRepository userRepository;
-    
     @Test
     public void testSave() {
         System.out.println("save");
-        
-        User sended = new User(null, "Soto","123","Andres Soto", "a.soto@utp.edu.co");
-        User resulted = new User(1L, "Soto","123","Andres Soto", "a.soto@utp.edu.co");
-        when(userRepository.save(sended)).thenReturn(resulted);
-        
-        UserDto user = new UserDto(1L, "Soto","123","Andres Soto", "a.soto@utp.edu.co");
-        UserService instance = new UserService(userRepository, new ModelMapper());
-        UserDto expResult = new UserDto(1L, "Soto","123","Andres Soto", "a.soto@utp.edu.co");
-        
+        UserDto user = null;
+        UserService instance = null;
+        UserDto expResult = null;
         UserDto result = instance.save(user);
-        
-        assertEquals(expResult.getId(), result.getId());
-        assertEquals(expResult.getUsername(), result.getUsername());
+        assertEquals(expResult, result);
+        fail("The test case is a prototype.");
+    }
 
+    @Test
+    public void testListAll() {
+        System.out.println("listAll");
+        UserService instance = null;
+        List<UserDto> expResult = null;
+        List<UserDto> result = instance.listAll();
+        assertEquals(expResult, result);
+        fail("The test case is a prototype.");
+    }
+
+    @Test
+    public void testFindOne() {
+        System.out.println("findOne");
+        Long id = null;
+        UserService instance = null;
+        UserDto expResult = null;
+        UserDto result = instance.findOne(id);
+        assertEquals(expResult, result);
+        fail("The test case is a prototype.");
+    }
+
+    @Test
+    public void testDelete() {
+        System.out.println("delete");
+        long id = 0L;
+        UserService instance = null;
+        UserDto expResult = null;
+        UserDto result = instance.delete(id);
+        assertEquals(expResult, result);
+        fail("The test case is a prototype.");
+    }
+
+    @Test
+    public void testUpdate() {
+        System.out.println("update");
+        long id = 0L;
+        UserDto user = null;
+        UserService instance = null;
+        UserDto expResult = null;
+        UserDto result = instance.update(id, user);
+        assertEquals(expResult, result);
+        fail("The test case is a prototype.");
     }
     
 }

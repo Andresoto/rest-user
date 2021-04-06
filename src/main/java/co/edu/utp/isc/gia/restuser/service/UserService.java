@@ -4,7 +4,10 @@ import co.edu.utp.isc.gia.restuser.data.entity.User;
 import co.edu.utp.isc.gia.restuser.data.repository.UserRepository;
 import co.edu.utp.isc.gia.restuser.exception.BadRequestException;
 import co.edu.utp.isc.gia.restuser.exception.InvalidUserException;
+import co.edu.utp.isc.gia.restuser.exception.UserNotFoundException;
 import co.edu.utp.isc.gia.restuser.web.dto.UserDto;
+import java.util.ArrayList;
+import java.util.List;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
@@ -18,64 +21,77 @@ public class UserService {
         
     private UserRepository userRepository;
     private ModelMapper modelMapper = new ModelMapper();
-
+    
     public UserService(UserRepository userRepository, ModelMapper modelMapper) {
         this.userRepository = userRepository;
         this.modelMapper =  modelMapper;
     }
-
-    UserService(UserRepository userRepository) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    
-    
+ 
     
     public UserDto save(UserDto user) {
-        if (user.getEmail() == null || user.getName() == null || user.getPassword() == null || user.getUsername() == null) {
-            throw new BadRequestException("Parametro no valido");
-        } else {
+        if (user == null) {
+            throw new BadRequestException("Parametros no valido");
+        } else if (user.getUsername() == null || user.getUsername().isEmpty()){
+            throw new InvalidUserException("El username no puede ir nulo");
+        }else if (user.getEmail() == null || user.getEmail().isEmpty()){
+            throw new InvalidUserException("El email no puede ir nulo");
+        }else {
             User myUser = modelMapper.map(user, User.class);
             myUser = userRepository.save(myUser);
             UserDto resp = modelMapper.map(myUser, UserDto.class);
             return resp;
         }
     }
-    /*
+    
     public List<UserDto> listAll() {
-        return null;
+        List<UserDto> userDto = null;
+        List<User> users = (List<User>) userRepository.findAll();
+        if (users != null && !users.isEmpty() ) {
+            userDto = new ArrayList<>();
+            for (User user : users) {
+                userDto.add(modelMapper.map(user, UserDto.class));
+            }
+        }else{
+            throw new UserNotFoundException("Users not Found" );
+        }
+        return userDto;
     }
     
     public UserDto findOne(Long id) {
-        //int i = searchById(id, users);
-        //if (i == -1) {
-        //    throw new UserNotFoundException("User id : "+id+ " not Found" );
-        //}else{
-        //    return users.get(i);
-        //}
-        return null;
-    }
-    
-    public UserDto update(@PathVariable ("id") long id, @RequestBody UserDto user) {
-        int i = searchById(id, users);
-        if (i == -1) {
-            throw new UserNotFoundException("User id : "+id+ " not Found" );
+        if(userRepository.existsById(id)) {
+            return modelMapper.map(userRepository.findById(id).get(), UserDto.class);
         }else{
-            user.setId(id);
-            users.set(i, user);        
-            return users.get(i);
+            throw new UserNotFoundException("User id : "+id+ " not Found" );
         }
     }
     
-
-    public UserDto delete(@PathVariable ("id") long id) {
-        return users.remove(Math.toIntExact(id - 1));
+    public UserDto delete(long id) {
+        if(userRepository.existsById(id)) {
+            UserDto userDelete = findOne(id);
+            userRepository.deleteById(id);
+            return userDelete;
+        }else{
+            throw new UserNotFoundException("User id : "+id+ " not Found" );
+        }
     }
     
-    private int searchById (Long id, List<UserDto> users) {
-       for (int i=0; i<users.size(); i++) {
-            if (id.equals(users.get(i).getId())) return i;               
+    
+    public UserDto update(long id, UserDto user) {
+        if (user == null) {
+            throw new BadRequestException("Parametros no valido");
+        } else if (user.getUsername() == null || user.getUsername().isEmpty()) {
+            throw new InvalidUserException("El username no puede ir nulo");
+        } else if (user.getEmail() == null || user.getEmail().isEmpty()) {
+            throw new InvalidUserException("El email no puede ir nulo");
+        } else {
+            if (userRepository.existsById(id)) {
+                user.setId(id);
+                userRepository.save(modelMapper.map(user, User.class));
+                return findOne(id);
+            } else {
+                throw new UserNotFoundException("User Not Found");
+            }
         }
-        return -1;
     }
-    */
+    
 }
